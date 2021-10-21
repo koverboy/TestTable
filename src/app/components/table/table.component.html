@@ -1,0 +1,52 @@
+<div class="table-main">
+
+
+    <div>
+        <!-- <div style="display: grid;grid-auto-flow:column;grid-auto-columns: minmax(100px,1fr);">
+            <div *ngFor='let cell of headerLabelsArray;let index = index'>
+                <div>{{cell}}</div>
+            </div>
+        </div> -->
+
+        <div class="table-container" *ngFor='let formGroup of tableFormgroupArray;let index = index'>
+            <div [formGroup]='formGroup' class="table-row">
+                <input (input)='deleteRow($event,index)' value="{{index +1}}">
+                <input formControlName='healthIndex'>
+                <input formControlName='endDate'>
+                <input formControlName='minValueDateTime'>
+                <input formControlName='type'>
+                <input formControlName='cowId'>
+                <input formControlName='animalId'>
+                <input formControlName='eventId'>
+                <input formControlName='deletable'>
+                <input formControlName='lactationNumber'>
+                <input formControlName='daysInLactation'>
+                <input formControlName='ageInDays'>
+                <input formControlName='startDateTime'>
+                <input formControlName='reportingDateTime'>
+                <input formControlName='alertType'>
+                <input formControlName='duration'>
+                <input formControlName='originalStartDateTime'>
+                <input formControlName='endDateTime'>
+                <input formControlName='daysInPregnancy'>
+                <input formControlName='heatIndexPeak'>
+                <input formControlName='newGroupId'>
+                <input formControlName='newGroupName'>
+                <input formControlName='currentGroupId'>
+                <input formControlName='currentGroupName'>
+                <input formControlName='destinationGroup'>
+                <input formControlName='destinationGroupName'>
+                <input formControlName='calvingEase'>
+                <input formControlName='oldLactationNumber'>
+                <input formControlName='newborns'>
+                <input formControlName='cowEntryStatus'>
+                <input formControlName='birthDateCalculated'>
+                <input formControlName='sire'>
+                <input formControlName='breedingNumber'>
+                <input formControlName='isOutOfBreedingWindow'>
+                <input formControlName='interval'>
+            </div>
+        </div>
+        <button (click)='addTableRow()'> Add+</button>
+    </div>
+</div>
