@@ -1,3 +1,11 @@
+# How it works
+
+To delete row you need delete index cell.
+
+To add row you need to click add+ button.
+
+To edit just input your data to input cell.
+
 # Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
