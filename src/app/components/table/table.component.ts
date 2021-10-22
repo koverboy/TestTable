@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataRow } from '../../interfaces/data-row';
@@ -9,7 +9,7 @@ import { TableDataService } from '../../services/table-data-service.service';
   styleUrls: ['./table.component.scss']
 })
 
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnDestroy {
 
   constructor(private fb: FormBuilder, public tableDataService: TableDataService) {
   }
@@ -18,25 +18,28 @@ export class TableComponent implements OnInit, OnDestroy {
   public tableFormgroupArray: Array<FormGroup> = [];
   private subscribersArray: Array<Subscription> = [];
 
+  @Output() tableChangedEvent = new EventEmitter();
+
   @Input() set dataArray(value: Array<DataRow>) {
     this._dataArray = value;
     this.createArrayFormGroup();
-  };
+  }
   get dataArray() {
     return this._dataArray;
   }
 
-  @Output() tableChangedEvent = new EventEmitter();
+
   createArrayFormGroup() {
     this.tableFormgroupArray = [];
     this._dataArray.forEach((el, index) => {
       this.addTableRow(el, index);
     });
   }
+
   addTableRow(element: DataRow = new DataRow(), index: number = this.tableFormgroupArray.length) {
     const formGroup = this.fb.group(element);
     this.tableFormgroupArray.push(formGroup);
-    const formGroupSubscription = formGroup.valueChanges.subscribe((value) => { this.getOutPutData(value, index) });
+    const formGroupSubscription = formGroup.valueChanges.subscribe((value: any) => { this.getOutPutData(value, index) });
     this.subscribersArray.push(formGroupSubscription);
   }
 
@@ -49,6 +52,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
     this.tableChangedEvent.emit(this._dataArray);
   }
+
   deleteRow(event: any, index: number) {
     if (event.inputType === 'deleteContentBackward') {
       this.getOutPutData(null, index)
@@ -58,11 +62,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit(): void {
-  }
   ngOnDestroy(): void {
     this.subscribersArray.forEach((subscriber) => { subscriber.unsubscribe(); })
   }
-
 
 }
