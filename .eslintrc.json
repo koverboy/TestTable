@@ -16,12 +16,16 @@
       },
       "parser": "@typescript-eslint/parser",
       "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
       ],
       "extends": [
-        "plugin:@angular-eslint/recommended"
+        "plugin:@angular-eslint/recommended",
+        "prettier"
       ],
       "rules": {
+        "comma-spacing": 2,
+        "indent": 2,
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -47,10 +51,7 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {
-        "comma-spacing": 2,
-        "indent": 2
-      }
+      "rules": {}
     }
   ]
 }

@@ -10,25 +10,25 @@ import { ComponentsModule } from './components/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+    declarations: [
+        AppComponent,
 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule, ReactiveFormsModule,
-    HttpClientModule,
-    ComponentsModule
-  ],
-  providers: [
-    TableDataService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent]
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule, ReactiveFormsModule,
+        HttpClientModule,
+        ComponentsModule
+    ],
+    providers: [
+        TableDataService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: Interceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
